@@ -25,6 +25,7 @@ export class PokemonService {
                     this.httpClient.get(item['url'])
                         .subscribe(pokemon => {
                             const pokData: Pokemon = {
+                                id: pokemon['id'],
                                 name: pokemon['name'],
                                 sprite: pokemon['sprites']['front_default'],
                                 type: pokemon['types']
@@ -38,6 +39,16 @@ export class PokemonService {
             }, err => {
                 console.log(err);
             });
+    }
+
+    saveColInLocalStorage(coll: any[]) {
+        const stringified = JSON.stringify(coll);
+        localStorage.setItem('collection', stringified);
+    }
+
+    fetchColFromLocalStorage() {
+        const parsed = JSON.parse(localStorage.getItem('collection'));
+        return parsed;
     }
 
     getPoksCountUpdatedListener() {

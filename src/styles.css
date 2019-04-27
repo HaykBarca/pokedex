@@ -15,6 +15,110 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 	align-items: center;
 }
 
+.poks-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.poks-container .pok-card {
+	position: relative;
+	width: 17vw;
+	height: 30vw;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	overflow: hidden;
+	cursor: pointer;
+}
+
+.poks-container .pok-card:hover {
+	-webkit-animation: UpDown 0.3s linear;
+	animation: UpDown 0.3s linear;
+}
+											
+.poks-container .pok-card .pok-sprite {
+	position: relative;
+	top: 0;
+	width: 100%;
+	height: 70%;
+	background-color: #F2F2F2;
+}
+
+.poks-container .pok-card .pok-sprite img {
+	width: 80%;
+	margin-top: -45px;
+}
+
+.poks-container .pok-card .pok-action {
+	height: 45px;
+	position: absolute;
+	right: 0;
+	left: 0;
+	background-color: white;
+	width: 50%;
+	margin: -40px auto;
+}
+
+.poks-container .pok-card .pok-action:before,
+.poks-container .pok-card .pok-action:after {
+	content: '';
+	position: absolute;
+	width: 40%;
+	border-radius: 10px;
+	background-color: #fff;
+}
+
+.poks-container .pok-card .pok-action:before {
+	left: -20%;
+	height: 45px;
+	transform: skew(-30deg);
+}
+
+.poks-container .pok-card .pok-action:after {
+	right: -20%;
+	height: 45px;
+	transform: skew(30deg);
+}
+
+.poks-container .pok-card .pok-action .btn-pok-collection {
+	width: 25px;
+	height: 25px;
+	background-image: url(./assets/images/poke-ball.png);
+	background-size: 100%;
+}
+
+.poks-container .pok-card .pok-action .btn-pok-collection.active {
+	background-image: url(./assets/images/poke-ball-active.png);
+}
+
+.poks-container .pok-card .pok-info {
+	width: 100%;
+	height: 30%;
+	flex-direction: column;
+}
+
+.poks-container .pok-card .pok-info .pok-types {
+	border: 1px solid #000;
+	margin: 5px;
+	padding: 5px 10px;
+	border-radius: 5px;
+}
+
+/* Animation */
+@keyframes UpDown {
+	0% {
+			bottom: 0;
+	}
+
+	50% {
+			bottom: 5px;
+	}
+
+	100% {
+			bottom: 0;
+	}
+}
+
 /*scrollbars*/
 ::-webkit-scrollbar-track {
 	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
