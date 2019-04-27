@@ -1,0 +1,22 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="poks-container" *ngIf="pokemons.length > 0 && !isLoading">
+  <div class="pok-card" *ngFor="let pokemon of pokemons">
+    <div class="pok-sprite flex-center">
+      <img [src]="pokemon['sprite']" [alt]="pokemon['name']">
+    </div>
+    <div class="pok-action"></div>
+    <div class="pok-info flex-center">
+      <p>{{ pokemon['name'] | titlecase }}</p>
+    </div>
+  </div>
+</div>
+
+<h1 *ngIf="pokemons.length === 0 && !isLoading" class="centered">Pokemons List is Empty!</h1>
+
+<mat-paginator 
+    [length]="totalPoks"
+    [pageSize]="poksPerPage"
+    [pageSizeOptions]="pageSizeOptions"
+    *ngIf="pokemons.length > 0"
+    (page)="onChangePage($event)">
+</mat-paginator>
