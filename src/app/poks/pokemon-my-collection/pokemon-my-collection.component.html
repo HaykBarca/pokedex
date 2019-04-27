@@ -1,3 +1,24 @@
-<p>
-  pokemon-my-collection works!
-</p>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<div class="poks-container" *ngIf="pokemons.length > 0 && !isLoading">
+  <div class="pok-card" *ngFor="let pokemon of pokemons">
+    <div class="pok-sprite flex-center">
+      <img [src]="pokemon['sprite']" [alt]="pokemon['name']">
+    </div>
+    <div class="pok-action flex-center">
+      <div 
+        class="btn-pok-collection {{ collection.includes(pokemon['id']) ? 'active' : ''}}"
+        (click)="onCollection(pokemon['id'], $event)"></div>
+    </div>
+    <div class="pok-info flex-center">
+      <p>{{ pokemon['name'] | titlecase }}</p>
+      <div class="inf-container flex-center">
+        <div
+         class="pok-types" 
+         *ngFor="let type of pokemon['type']"
+         >{{ type['type']['name'] | titlecase }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h1 *ngIf="pokemons.length === 0 && !isLoading" class="centered">Pokemons Collection List is Empty!</h1>

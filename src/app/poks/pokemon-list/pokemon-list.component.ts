@@ -33,7 +33,9 @@ export class PokemonListComponent implements OnInit, OnDestroy {
 
     this.poksSubscription = this.pokemonService.getPoksDataUpdateListener()
       .subscribe((poksData: Pokemon[]) => {
-        this.collection = this.pokemonService.fetchColFromLocalStorage();
+        if (this.pokemonService.fetchColFromLocalStorage()) {
+          this.collection = this.pokemonService.fetchColFromLocalStorage();
+        }
         this.pokemons = poksData;
         this.isLoading = false;
       });

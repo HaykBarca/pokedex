@@ -5,8 +5,8 @@
       <img [src]="pokemon['sprite']" [alt]="pokemon['name']">
     </div>
     <div class="pok-action flex-center">
-      <div 
-        class="btn-pok-collection {{ collection.includes(pokemon['id']) ? 'active' : ''}}"
+      <div
+        class="btn-pok-collection {{ collection.includes(pokemon['id']) ? 'active' : '' }}"
         (click)="onCollection(pokemon['id'], $event)"></div>
     </div>
     <div class="pok-info flex-center">

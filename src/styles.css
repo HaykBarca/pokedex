@@ -2,7 +2,10 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; }
+* {
+	font-family: 'Montserrat', sans-serif; 
+}
 
 /*common classes*/
 .centered {
@@ -18,7 +21,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .poks-container {
 	display: flex;
 	flex-wrap: wrap;
-	justify-content: space-between;
+	justify-content: space-around;
 }
 
 .poks-container .pok-card {
@@ -26,7 +29,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 	width: 17vw;
 	height: 30vw;
 	border-radius: 5px;
-	margin-bottom: 10px;
 	overflow: hidden;
 	cursor: pointer;
 }
@@ -138,4 +140,26 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 ::-webkit-scrollbar-thumb:hover {
   background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, rgb(110,138,195)), color-stop(0.72, rgb(67,115,173)), color-stop(0.86, rgb(26,52,131)));
+}
+
+/*medias*/
+@media screen and (max-width: 1024px) {
+	.poks-container .pok-card {
+		width: 21vw;
+		height: 35vw;
+	}
+}
+
+@media screen and (max-width: 768px) {
+	.poks-container .pok-card {
+		width: 28vw;
+		height: 50vw;
+	}
+}
+
+@media screen and (max-width: 550px) {
+	.poks-container .pok-card {
+		width: 43vw;
+		height: 80vw;
+	}
 }

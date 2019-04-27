@@ -9,8 +9,10 @@ import { Pokemon } from './pokemon-data.model';
 })
 export class PokemonService {
     private data: Pokemon[] = [];
+    private colData: Pokemon[] = [];
     private totalPokemons = new Subject<number>();
     private pokemonsDataSub = new Subject<Pokemon[]>();
+    private pokemonsIdDataSub = new Subject<Pokemon[]>();
 
     constructor(private httpClient: HttpClient) { }
 
@@ -41,6 +43,28 @@ export class PokemonService {
             });
     }
 
+    getPoksById(collection: any[]) {
+        this.colData = [];
+        if (collection.length === 0) {
+            this.pokemonsIdDataSub.next(this.colData);
+        }
+        collection.map(pokId => {
+            this.httpClient.get(`https://pokeapi.co/api/v2/pokemon/${pokId}/`)
+                .subscribe(pokemon => {
+                    const pokData: Pokemon = {
+                        id: pokemon['id'],
+                        name: pokemon['name'],
+                        sprite: pokemon['sprites']['front_default'],
+                        type: pokemon['types']
+                    };
+                    this.colData.push(pokData);
+                    if (collection.length === this.colData.length) {
+                        this.pokemonsIdDataSub.next(this.colData);
+                    }
+                });
+        });
+    }
+
     saveColInLocalStorage(coll: any[]) {
         const stringified = JSON.stringify(coll);
         localStorage.setItem('collection', stringified);
@@ -57,5 +81,9 @@ export class PokemonService {
 
     getPoksDataUpdateListener() {
         return this.pokemonsDataSub.asObservable();
+    }
+
+    getPoksIdDataUpdateListener() {
+        return this.pokemonsIdDataSub.asObservable();
     }
 }
